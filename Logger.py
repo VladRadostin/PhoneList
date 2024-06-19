@@ -6,7 +6,9 @@ def Read(Path):
 
     TempDataList = []
 
-    with open('File' + '\\' + Path, 'r', encoding='utf-8') as f:
+    print(Path)
+
+    with open(Path, 'r', encoding='utf-8') as f:
         DataList = f.readlines()
         TempDataList = DataList
 
@@ -29,16 +31,18 @@ def Record(Path):
         print("an invalid character is used ;")
         input("Press enter to continue: ")
         GlobalScript.RecordF()
+        return
 
 
     Bollformatfile = FormatFile(Path)
 
     if Bollformatfile:
-        with open('File' + '\\' + Path, 'a', encoding='utf-8') as f:
+        with open(Path, 'a', encoding='utf-8') as f:
             f.write(f"{name};{Surname};{Phone};{Address}\n\n")
     else:
-        with open('File' + '\\' + Path, 'a', encoding='utf-8') as f:
+        with open(Path, 'a', encoding='utf-8') as f:
             f.write(f"{name}\n{Surname}\n{Phone}\n{Address}\n\n") 
+
 
 
 def Changes(Path):
@@ -59,13 +63,13 @@ def Changes(Path):
 
         string = f"{name};{Surname};{Phone};{Address};"
             
-        with open('File' + '\\' + Path, 'r', encoding='utf-8') as f:
+        with open(Path, 'r', encoding='utf-8') as f:
             DataList = f.readlines()
             TempDataList = DataList
 
         TempDataList[colim - 1] = string + "\n"
 
-        with open('File' + '\\' + Path, 'w', encoding='utf-8') as f:
+        with open(Path, 'w', encoding='utf-8') as f:
             f.writelines(TempDataList)
 
     else:
@@ -96,14 +100,15 @@ def Changes(Path):
             print("an invalid character is used ;")
             input("Press enter to continue: ")
             GlobalScript.ChangesF()
+            return
 
-        with open('File' + '\\' + Path, 'r', encoding='utf-8') as f:
+        with open(Path, 'r', encoding='utf-8') as f:
             DataList = f.readlines()
             TempDataList = DataList
 
         TempDataList[colim - 1] = temp1 + "\n"
 
-        with open('File' + '\\' + Path, 'w', encoding='utf-8') as f:
+        with open(Path, 'w', encoding='utf-8') as f:
             f.writelines(TempDataList)
 
 
@@ -120,23 +125,23 @@ def Delete(Path):
     
     if Bollformatfile:
         
-        with open('File' + '\\' + Path, 'r', encoding='utf-8') as f:
+        with open(Path, 'r', encoding='utf-8') as f:
             DataList = f.readlines()
             TempDataList = DataList
 
         TempDataList[colim - 1] = delete
 
-        with open('File' + '\\' + Path, 'w', encoding='utf-8') as f:
+        with open(Path, 'w', encoding='utf-8') as f:
             f.writelines(TempDataList)
 
     else:
-        with open('File' + '\\' + Path, 'r', encoding='utf-8') as f:
+        with open(Path, 'r', encoding='utf-8') as f:
             DataList = f.readlines()
             TempDataList = DataList
 
         TempDataList[colim - 1] = delete
 
-        with open('File' + '\\' + Path, 'w', encoding='utf-8') as f:
+        with open(Path, 'w', encoding='utf-8') as f:
             f.writelines(TempDataList)
 
 
@@ -146,13 +151,14 @@ def FormatFile(Path):
     string = ''
     trea = []
 
-    with open('File' + '\\' + Path, 'r', encoding='utf-8') as f:
+    with open(Path, 'r', encoding='utf-8') as f:
         DataList = f.readlines()
         trea = DataList
     
     for i in trea:
         string += str(i)
 
+    print(string)
     for i in range(len(string)):
         if string[i] == ";":
             return True

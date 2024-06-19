@@ -45,36 +45,44 @@ def TeamNumbersProgramm(tempCommandPO):
 
     match tempCommandPO:
         case "2":
-            print("uploading data \n")
-            file = os.listdir(os.getcwd() + "\File")
+            print("uploading data \n")  
+            
+            Path_OS = os.path.join(os.getcwd(), "File")
+            file = os.listdir(Path_OS)
+
             for i in range(len(file)):
-                Datalist = Logger.Read(file[i])
+                path = os.path.join("File\\", file[i])
+                Datalist = Logger.Read(path)
                 PrintList(Datalist, 2)
             
         case "3":
             file = FileSearch()
             print("uploading data \n")
             if file != 0:
-                Datalist = Logger.Read(file)
+                path = os.path.join("File\\", file)
+                Datalist = Logger.Read(path)
                 PrintList(Datalist, 2)
 
         case "4":
             file = FileSearch()
             print("create new data \n")
             if file != 0:
-                Logger.Record(file)
+                path = os.path.join("File\\", file)
+                Logger.Record(path)
         
         case "5":
             file = FileSearch()
             print("Changes data \n")
             if file != 0:
-                Logger.Changes(file)
+                path = os.path.join("File\\", file)
+                Logger.Changes(path)
 
         case "6":
             file = FileSearch()
             print("delete data \n")
             if file != 0:
-                Logger.Delete(file)
+                path = os.path.join("File\\", file)
+                Logger.Delete(path)
      
 
 
@@ -181,7 +189,8 @@ def DeleteF():
 def FileSearch():
     
     boolean = True
-    ListDir = os.listdir(os.getcwd() + "\File")
+    path = os.path.join(os.getcwd(), "File")
+    ListDir = os.listdir(path)
 
     PrintList(ListDir, 1)
 
@@ -199,7 +208,6 @@ def FileSearch():
         return 0
     
     return file
-
 
 
 # help list
@@ -254,4 +262,5 @@ def AnUnavailableСharacter(Name, Surname, Phone, Address):
             return True
         
     return False
-            
+
+         
